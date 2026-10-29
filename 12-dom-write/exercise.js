@@ -30,9 +30,24 @@
  * @returns {void}
  */
 export function addProduct(name, price) {
-  // TODO: createElement for each piece, fill them in, append them together,
-  // then append the card to #list. Nothing appears until that last step.
-  throw new Error("addProduct is not written yet");
+  const card = document.createElement("li");
+  card.classList.add("card");
+
+  const heading = document.createElement("h3");
+  heading.textContent = name;
+
+  const priceLabel = document.createElement("p");
+  priceLabel.classList.add("price");
+  priceLabel.textContent = `${price} EGP`;
+
+  card.append(heading, priceLabel);
+  document.querySelector("#list").append(card);
+}
+
+function findCard(name) {
+  return Array.from(document.querySelectorAll("#list .card")).find(
+    (card) => card.querySelector("h3").textContent === name
+  );
 }
 
 /**
@@ -43,8 +58,7 @@ export function addProduct(name, price) {
  * @returns {void}
  */
 export function removeProduct(name) {
-  // TODO: find the right card, then call .remove() on it.
-  throw new Error("removeProduct is not written yet");
+  findCard(name)?.remove();
 }
 
 /**
@@ -55,8 +69,7 @@ export function removeProduct(name) {
  * @returns {void}
  */
 export function markSoldOut(name) {
-  // TODO: find the card, then classList.add.
-  throw new Error("markSoldOut is not written yet");
+  findCard(name)?.classList.add("sold-out");
 }
 
 /**
@@ -65,8 +78,7 @@ export function markSoldOut(name) {
  * @returns {void}
  */
 export function clearProducts() {
-  // TODO: loop over all the cards and remove each one.
-  throw new Error("clearProducts is not written yet");
+  document.querySelector("#list").replaceChildren();
 }
 
 /**
@@ -90,4 +102,22 @@ export function clearProducts() {
  * Remember `export`.
  */
 
-// TODO: write wireButtons here.
+export function wireButtons() {
+  const addButton = document.querySelector("#add");
+  const resetButton = document.querySelector("#reset");
+
+  if (!wiredButtons.has(addButton)) {
+    wiredButtons.add(addButton);
+    addButton.addEventListener("click", () => {
+      addProduct("Notebook", 45);
+    });
+  }
+  if (!wiredButtons.has(resetButton)) {
+    wiredButtons.add(resetButton);
+    resetButton.addEventListener("click", clearProducts);
+  }
+}
+
+const wiredButtons = new WeakSet();
+
+wireButtons();
