@@ -1,0 +1,29 @@
+body {
+  font-family: system-ui, sans-serif;
+  background-color: #f3f6f4;
+  color: #1f2933;
+  margin: 0;
+  padding: 2rem;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background-color: #174f3b;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.row {
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  color: #174f3b;
+  background-color: #ffffff;
+  border-radius: 0.4rem;
+}
